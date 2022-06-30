@@ -6,7 +6,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: 'Roboto, sans-serif',
+        sans: 'Quicksand, sans-serif',
       },
 
       colors: {
@@ -32,6 +32,9 @@ module.exports = {
           600: '#29292E',
           700: '#121214',
           900: '#09090A'
+        },
+        myGreen: {
+          900: '#2ecc71'
         }
       },
     },

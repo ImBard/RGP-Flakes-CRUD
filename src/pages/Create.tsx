@@ -3,6 +3,7 @@ import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import classNames from 'classnames'
+import { Header } from "../components/Header";
 
 const CREATE_CHARACTER_MUTATION = gql`
 mutation ($name: String!, $class: String!, $age: String!, $healtPower: String!, $attack: String!, $defense: String!, $description: String!, $characterId: String!, $gender: String!) {
@@ -61,11 +62,15 @@ export function Create() {
     if (!loading) {
       await publishCharacter({
         variables: {
-          characterId
+          characterId: characterId
         }
       })
     }
 
+    goHome()
+  }
+
+  function goHome() {
     navigate('/home')
   }
 
@@ -73,9 +78,7 @@ export function Create() {
     <div id="teste"
       className="min-h-screen flex flex-col items-center justify-center"
     >
-      <h1 className="text-2xl text-white">
-        Create your character
-      </h1>
+      <Header onclick={goHome}/>
 
       <form onSubmit={handleCharacter} className="w-96 max-w-sm flex flex-col gap-8 mt-8 p-6 bg-gray-700 rounded border border-gray-600">
         <input type="text" placeholder="Name" onChange={event => setName(event.target.value)} className="p-2 bg-gray-900 rounded hover:bg-gray-600 " />

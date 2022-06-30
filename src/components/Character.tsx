@@ -17,28 +17,28 @@ interface GetCharacter {
 export function Character(props: GetCharacter) {
 
   return (
-    <div className="bg-gray-600 flex  gap-5 justify-center p-4 rounded border border-gray-500">
+    <div className="bg-gray-600 flex  gap-5 justify-center p-4 rounded border border-gray-500 my-10 max-w-lg w-[512px]">
       <div className='flex flex-col'>
         <img
-          className='h-40 border border-gray-300 rounded mb-4'
+          className='h-40 border border-myGreen-900 rounded mb-4'
           src={defaultCharacter}
           alt=""
         />
         <strong>Health-Power</strong>
-        <span className='mb-2'>{props['health-power']}</span>
+        <span className='mb-2 text-blue-600'>{props['health-power']}</span>
         <strong>Attack</strong>
-        <span className='mb-2'>{props.attack}</span>
+        <span className='mb-2 text-red-600'>{props.attack}</span>
         <strong>Defense</strong>
-        <span className='mb-2'>{props.defense}</span>
+        <span className='mb-2 text-myGreen-900'>{props.defense}</span>
 
       </div>
 
       <div className='flex flex-col'>
         <div className='grid grid-cols-2'>
-          <span className='p-2 '>Name: <strong>{props.name}</strong></span>
-          <span className='p-2 mb-2'>Class: <strong>{props.class}</strong></span>
-          <span className='p-2 mb-2'>Age: <strong>{props.age}</strong></span>
-          <span className='p-2 mb-2'>Gender: <strong>{props.gender}</strong></span>
+          <span className='p-2 font-bold'>Name: <span className='font-normal'>{props.name}</span></span>
+          <span className='p-2 font-bold'>Class: <span className='font-normal'>{props.class}</span></span>
+          <span className='p-2 font-bold'>Age: <span className='font-normal'>{props.age}</span></span>
+          <span className='p-2 font-bold'>Gender: <span className='font-normal'>{props.gender}</span></span>
         </div>
         <div className='flex flex-col max-w-sm'>
           <h1 className='font-bold text-lg'>Description</h1>

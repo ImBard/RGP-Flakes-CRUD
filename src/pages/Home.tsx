@@ -1,6 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 import { MagnifyingGlass } from "phosphor-react";
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Character } from "../components/Character";
 import { Header } from "../components/Header";
@@ -82,39 +82,42 @@ export function Home() {
     navigate("/")
   }
 
+  const search = () => setList(false);
+
   return (
     <div className="flex flex-col min-h-screen">
-      <Header onclick={goCreate}/>
+      <Header onclick={goCreate} />
       <main className="flex flex-1 flex-col items-center justify-center">
-        <form>
-          <label htmlFor="search" className="flex my-10 gap-4 items-center bg-gray-600 p-2 rounded ">
-            <button
-              className="p-2"
-              type="submit"
-            >
-              <MagnifyingGlass size={24} />
-            </button>
+        <label htmlFor="search" className="flex my-10 gap-4 items-center bg-gray-600 p-2 rounded ">
+          <button
+            onClick={search}
+            className="p-2"
+            type="submit"
+          >
+            <MagnifyingGlass size={24} />
+          </button>
 
-            <input type="text" id="search" placeholder="Search a character" onChange={event => setSearchId(event.target.value)} className="p-2 bg-gray-900 border border-gray-400 rounded hover:bg-gray-600 max-w-sm w-96" />
-          </label>
-        </form>
+          <input type="text" id="search" placeholder="Search a character" onChange={event => setSearchId(event.target.value)} className="p-2 bg-gray-900 border border-gray-400 rounded hover:bg-gray-600 max-w-sm w-96" />
+        </label>
 
-        {data?.characters.map(character => {
-            return (
-              <Character
-                key={character.characterId}
-                name={character.name}
-                class={character.class}
-                age={character.age}
-                gender={character.gender}
-                description={character.description}
-                health-power={character.healthPower}
-                attack={character.attack}
-                defense={character.defense}
-              />
-            )
-          })
-        }
+        {
+          data?.characters.map(character => {
+            if (character.name.match(searchId) || character.characterId.match(searchId)) {
+              return (
+                <Character
+                  key={character.characterId}
+                  name={character.name}
+                  class={character.class}
+                  age={character.age}
+                  gender={character.gender}
+                  description={character.description}
+                  health-power={character.healthPower}
+                  attack={character.attack}
+                  defense={character.defense}
+                />
+              )
+            }
+          })}
       </main>
     </div>
   )

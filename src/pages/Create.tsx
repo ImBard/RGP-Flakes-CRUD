@@ -58,16 +58,21 @@ export function Create() {
         gender: gender
       }
     })
-    
+
     if (!loading) {
       await publishCharacter({
         variables: {
           characterId: characterId
         }
+      }).then((response) => {
+        goHome()
+        console.log("foi", response)
+      }).catch((error) => {
+        console.log(error)
       })
     }
 
-    goHome()
+
   }
 
   function goHome() {
@@ -78,7 +83,7 @@ export function Create() {
     <div id="teste"
       className="min-h-screen flex flex-col items-center justify-center"
     >
-      <Header onclick={goHome}/>
+      <Header onclick={goHome} />
 
       <form onSubmit={handleCharacter} className="w-96 max-w-sm flex flex-col gap-8 mt-8 p-6 bg-gray-700 rounded border border-gray-600">
         <input type="text" placeholder="Name" onChange={event => setName(event.target.value)} className="p-2 bg-gray-900 rounded hover:bg-gray-600 " />
@@ -161,6 +166,7 @@ export function Create() {
             <button
               className="mt-4 w-32 bg-green-500 uppercase p-3 rounded font-bold text-sm hover:bg-green-700 transition-colors disabled:opacity-50"
               type="submit"
+              onClick={handleCharacter}
             >
               Create
             </button>

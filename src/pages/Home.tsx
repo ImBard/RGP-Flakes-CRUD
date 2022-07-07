@@ -1,7 +1,7 @@
 import { gql, useQuery } from "@apollo/client";
 import { MagnifyingGlass } from "phosphor-react";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Character } from "../components/Character";
 import { Header } from "../components/Header";
 
@@ -99,22 +99,24 @@ export function Home() {
 
           <input type="text" id="search" placeholder="Search a character" onChange={event => setSearchId(event.target.value)} className="p-2 bg-gray-900 border border-gray-400 rounded hover:bg-gray-600 max-w-sm w-96" />
         </label>
-
+        {/* =========== SÓ ESTÁ BUSCANDO NOVOS PERSONAGENS QUANDO ATUALIZA A TELA(F5) */}
         {
           data?.characters.map(character => {
             if (character.name.match(searchId) || character.characterId.match(searchId)) {
               return (
-                <Character
-                  key={character.characterId}
-                  name={character.name}
-                  class={character.class}
-                  age={character.age}
-                  gender={character.gender}
-                  description={character.description}
-                  health-power={character.healthPower}
-                  attack={character.attack}
-                  defense={character.defense}
-                />
+                <Link to={`/MyCharacter/${character.characterId}`}>
+                  <Character
+                    key={character.characterId}
+                    name={character.name}
+                    class={character.class}
+                    age={character.age}
+                    gender={character.gender}
+                    description={character.description}
+                    health-power={character.healthPower}
+                    attack={character.attack}
+                    defense={character.defense}
+                  />
+                </Link>
               )
             }
           })}

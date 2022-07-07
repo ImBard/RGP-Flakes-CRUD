@@ -17,7 +17,7 @@ interface GetCharacter {
 export function Character(props: GetCharacter) {
 
   return (
-    <div className="bg-gray-600 flex  gap-5 justify-center p-4 rounded border border-gray-500 my-10 max-w-lg w-[512px]">
+    <div className="bg-gray-600 flex  gap-5 justify-center p-4 rounded border border-gray-500 my-10 max-w-lg w-[512px] active:bg-gray-700 transition-colors">
       <div className='flex flex-col'>
         <img
           className='h-40 border border-myGreen-900 rounded mb-4'

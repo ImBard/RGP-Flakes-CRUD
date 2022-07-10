@@ -13,3 +13,18 @@ body {
     -webkit-font-smoothing: antialiased;
     
 }
+
+
+::-webkit-scrollbar {
+  overflow: overlay;
+  width: 10px;
+  
+}
+::-webkit-scrollbar-track {
+  display: initial;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #242c37;
+  border-radius: 5px;
+}

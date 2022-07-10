@@ -29,7 +29,7 @@ export function Character(props: GetCharacter) {
         <strong>Attack</strong>
         <span className='mb-2 text-red-600'>{props.attack}</span>
         <strong>Defense</strong>
-        <span className='mb-2 text-myGreen-900'>{props.defense}</span>
+        <span className='mb-2 text-green-500'>{props.defense}</span>
 
       </div>
 

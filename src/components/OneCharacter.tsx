@@ -104,7 +104,7 @@ export function OneCharacter(props: OneCharacter) {
           <div className='flex flex-col max-w-sm'>
             <h1 className='max-w-[100px] font-bold text-lg'>Description</h1>
             <textarea
-              className=' rounded p-2 text-gray-300 bg-gray-700 resize-none border-gray-600'
+              className=' rounded p-2 text-gray-300 bg-gray-700 resize-none border-gray-600 h-72'
               defaultValue={props.description}
               onChange={e => props.inputDescription(e.target.value)}
             />

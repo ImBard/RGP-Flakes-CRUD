@@ -1,10 +1,13 @@
 import { gql, useMutation, useQuery } from "@apollo/client";
+import { Box, LinearProgress } from "@mui/material";
 import { ArrowLeft, Warning } from "phosphor-react";
 import { FormEvent, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Character } from "../components/Character";
 import { Header } from "../components/Header";
+import { LoadingCharacter } from "../components/loadingCharacter";
 import { OneCharacter } from "../components/OneCharacter";
+import { client } from "../lib/apollo";
 
 const GET_MY_CHARACTER_QUERY = gql`
 query MyQuery ($characterId: String) {
@@ -77,8 +80,11 @@ export function MyCharacter() {
     }
   })
 
-
-  const [updateCharacter, { loading }] = useMutation(UPDATE_CHARACTER_MUTATION)
+  client.refetchQueries({
+    include: [GET_MY_CHARACTER_QUERY]
+  });
+  
+  const [updateCharacter] = useMutation(UPDATE_CHARACTER_MUTATION)
 
   async function handleUpdate(event: FormEvent) {
     event.preventDefault();
@@ -86,20 +92,23 @@ export function MyCharacter() {
       variables: {
         name: newName,
         age: newAge,
-        healtPower: newHealthPower,
+        healthPower: newHealthPower,
         attack: newAttack,
         defense: newDefense,
         description: newDescription,
         characterId: slug
       }
-    }).then((response) => {
-      console.log(response)
+    }).then(() => {
+      goHome()
+    }).catch((error) => {
+      console.log(error)
     })
   }
+
   function goHome() {
     navigate("/home")
   }
-  // console.table([newAge, newName, newAttack, newDefense, newDescription, newHealthPower])
+
   if (data != undefined) {
     return (
       <div className="flex flex-col min-h-screen">
@@ -130,13 +139,7 @@ export function MyCharacter() {
       <div className="flex flex-col min-h-screen">
         <Header link={"/home"} />
         <main className="flex flex-col items-center justify-center m-auto">
-          <div className="flex gap-2 bg-amber-500 p-5 rounded border-amber-700 text-gray-700 font-bold items-center">
-            <Warning size={24} />
-            Houve um erro ao retornar o character
-            <Link to={"/home"} className="bg-gray-600 rounded text-gray-200 p-2">
-              <ArrowLeft size={24} />
-            </Link>
-          </div>
+          <LoadingCharacter />
         </main>
       </div>
     )

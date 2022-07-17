@@ -75,7 +75,7 @@ export function Home() {
   //     characterId: searchId
   //   }
   // })
-
+  console.log(data)
   const navigate = useNavigate()
 
   function goCreate() {
@@ -86,7 +86,7 @@ export function Home() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Header onclick={goCreate} />
+      <Header link={"/"} />
       <main className="flex flex-1 flex-col items-center justify-center">
         <label htmlFor="search" className="flex my-10 gap-4 items-center bg-gray-600 p-2 rounded ">
           <button

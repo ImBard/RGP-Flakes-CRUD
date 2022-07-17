@@ -57,7 +57,7 @@ export function Home() {
         {/* =========== SÓ ESTÁ BUSCANDO NOVOS PERSONAGENS QUANDO ATUALIZA A TELA(F5) */}
         {
           data?.characters.map(character => {
-            if (character.name.toLowerCase().match(searchId) || character.characterId.match(searchId)) {
+            if (character.name.toLowerCase().match(searchId) || character.name.match(searchId) || character.characterId.match(searchId)) {
               return (
                 <Link to={`/MyCharacter/${character.characterId}`}>
                   <Character
